@@ -1,0 +1,26 @@
+GENERAL:
+  MODE: train  #
+MODEL:
+  TYPE: ProjFCHead # which model/architecture
+  NAME: birdnet_classification-arcface_drop_[G--17B2-2--17A15-1--B--18B8-1] # 1 is only fc, 2 is -> 256 -> fc (NUM_PROJ_ELEMS=256)
+DATA:
+  DATASET: littlepenguin_embedded # TODO rtbc-begging-new  # dataset name
+  DATASET_PATH: null # None
+  CLASS: "exhale"  # which label to use
+  CLASSES_TO_DROP: ["G", "17B2-2", "17A15-1", "B", "18B8-1"]
+  BATCH_SIZE: 256
+  USE_BALANCED_DATASET: True
+TRAIN:
+  OPTIMIZER: "adamw"
+  SCHEDULER: "CosineAnnealing"
+  CRITERION: "ArcFaceLoss"
+  ARGS:
+    BASE_LR: 0.001
+    USE_X_PERC_DATA: 1.0
+  EPOCHS: 300
+  EARLY_STOPPER:
+    PATIENCE: 10
+    MIN_DELTA: 0.05
+HYPERPARAMS:
+  LATENT_DIM: 1024
+  NUM_PROJ_ELEMS: 256 # 256

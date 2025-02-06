@@ -1,0 +1,25 @@
+GENERAL:
+  MODE: train  #
+MODEL:
+  TYPE: ProjFCHead # which model/architecture
+  NAME: birdnet_classification-with-negs_drop_[1011--712--1711]
+DATA:
+  DATASET: pipit-fg_embedded # TODO rtbc-begging-new  # dataset name
+  DATASET_PATH: null # None
+  BATCH_SIZE: 32
+  USE_BALANCED_DATASET: True
+  CLASSES_TO_DROP: ["1011", "712", "1711"]
+TRAIN:
+  OPTIMIZER: "adamw"
+  SCHEDULER: "CosineAnnealing"
+  CRITERION: "EntropicOpensetLoss"
+  ARGS:
+    BASE_LR: 0.001
+    USE_X_PERC_DATA: 1.0
+  EPOCHS: 200
+  EARLY_STOPPER:
+    PATIENCE: 10
+    MIN_DELTA: 0.05
+HYPERPARAMS:
+  LATENT_DIM: 1024
+  NUM_PROJ_ELEMS: 256  # 256

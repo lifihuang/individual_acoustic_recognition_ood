@@ -1,0 +1,48 @@
+GENERAL:
+  MODE: train  #
+MODEL:
+  TYPE: AemNet # which model/architecture
+  NAME: raw_audio-arcface_drop_[G--17B2-2--17A15-1--B--18B8-1] # which specific model config
+DATA:
+  DATASET: littlepenguin  # dataset name
+  DATASET_PATH: None
+  CLASS: "exhale"  # which label to use
+  BATCH_SIZE: 128
+  SCENARIO: None
+  CLASSES_TO_DROP: ["G", "17B2-2", "17A15-1", "B", "18B8-1"]
+  CHANNEL_COUNT: 1
+  SAMPLING_RATE: 44100  # 32000 default
+  MAX_AUDIO_LENGTH: 3.0  # in s
+  USE_SILENCE_PADDING: True  # if True, will pad up to max_audio_length
+  SIGNAL_TO_NOISE_RATIO: None
+TRAIN:
+  OPTIMIZER: "adamw"
+  SCHEDULER: "CosineAnnealing"
+  CRITERION: "ArcFaceLoss"
+  ARGS:
+    BASE_LR: 0.001
+#    USE_X_PERC_DATA: 1
+  AUGS:
+    METHODS: ["mixup", "time-masking", "gain", "freq-masking"]
+    ARGS:
+      MIXUP_ALPHA: 5
+      MIXUP_BETA: 2
+      MIXUP_START_EPOCH: 5
+      TM_MIN_BAND_PART: 0.0
+      TM_MAX_BAND_PART: 0.3
+      TM_FADE: False
+      TM_P: 0.5
+      GAIN_MIN: -6.0
+      GAIN_MAX: 6.0
+      GAIN_P: 0.5
+      FM_MIN_MASK_FRAC: 0.03
+      FM_MAX_MASK_FRAC: 0.25
+      FM_P: 0.5
+  EPOCHS: 200
+  EARLY_STOPPER:
+    PATIENCE: 10
+    MIN_DELTA: 0.01
+HYPERPARAMS:
+  WIDTH_MUL: 0.5
+  DROPOUT: 0.2
+  NUM_PROJ_ELEMS: 128
