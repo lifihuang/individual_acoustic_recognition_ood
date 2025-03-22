@@ -1,7 +1,7 @@
 # Individual Acoustic Recognition
 
 ## Introduction
-This repository contains the code for the paper [Acoustic Recognition of Individuals in the Presence of Unknown Individuals](https://www.biorxiv.org/content/10.1101/2024.12.18.629284v1). 
+This repository contains the code for the paper [Acoustic recognition of individuals in closed and open bird populations](https://www.biorxiv.org/content/10.1101/2024.12.18.629284v2). 
 
 ## Installation
 The project is written and tested with Python 3.8.10. To install the required packages, create a virtual environment and run the following command:
@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ```
 
 ## Data
-The red-tailed black cockatoo and little penguin data used in the paper were collected by the authors and are available at [Zenodo](https://zenodo.org/records/14694741). 
+The red-tailed black cockatoo and little penguin data used in the paper were collected by the authors and are available at [Zenodo](https://zenodo.org/records/15054394). 
 The remaining chiffchaff, little owl and tree pipit data were collected by the authors of [a different paper](https://royalsocietypublishing.org/doi/10.1098/rsif.2018.0940) and are available at [Zenodo](https://zenodo.org/records/1413495).
 Once downloaded, each of the dataset folders should be placed in the `dataset` directory. The individual dataset folders provided here should already contain a `metadata.csv` file, a `birdnet-embeddings` and `google-perch-embeddings` directory, merely the data needs to be added.
 The ESC-50 dataset can be downloaded from [here](https://github.com/karolpiczak/ESC-50) and should also be added to the `dataset` directory.
